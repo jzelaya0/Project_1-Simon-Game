@@ -1,0 +1,50 @@
+body {
+  font-family: 'Lato', helvetica, serif;
+  font-size: 1em;
+}
+
+.main-container {
+  width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.board-container {
+  width: 400px;
+  height: 400px;
+  margin: 20px auto;
+}
+
+
+.square {
+  background-color: lightgreen;
+  margin: 3.5px 2.5px;
+  width: 190px;
+  height: 190px;
+  display: inline-block;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgb(168, 168, 168);
+}
+
+#green {
+  background-color: rgb(109,215,105);
+}
+
+#blue {
+  background-color: rgb(115,205,204);
+}
+
+#red {
+  background-color: rgb(254,73,83);
+}
+
+#yellow {
+  background-color: rgb(253,251,94);
+}
+
+
+
+h2,
+p {
+  text-align: left;
+}
