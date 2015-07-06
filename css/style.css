@@ -1,7 +1,13 @@
+/*******************************
+LAYOUT
+*******************************/
+
 body {
   font-family: 'Lato', helvetica, serif;
   font-size: 1em;
+  background: url(../images/ricepaper_v3_@2X.png);
 }
+
 
 .main-container {
   width: 960px;
@@ -15,9 +21,36 @@ body {
   margin: 20px auto;
 }
 
+.buttons-container {
+  margin: 20px 0;
+}
+
+.rules {
+  margin: 40px 0;
+}
+
+
+/*******************************
+BUTTONS
+*******************************/
+
+#start,
+#reset,
+#challenge_mode {
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: rgb(174, 192, 214);
+  box-shadow: 0 1px 10px grey;
+}
+
+
+#challenge_mode {
+  display: block;
+  margin: 10px auto;
+}
 
 .square {
-  background-color: lightgreen;
   margin: 3.5px 2.5px;
   width: 190px;
   height: 190px;
