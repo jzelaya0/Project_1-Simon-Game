@@ -8,16 +8,23 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
-    <script src="script/app.js"></script>
   </head>
   <body>
     <div class="main-container">
       <h1>Simon Says</h1>
       <div class="board-container">
-        <div class="square" id="red"></div>
-        <div class="square" id="green"></div>
-        <div class="square" id="blue"></div>
-        <div class="square" id="yellow"></div>
+        <div class="square" id="red">
+          <audio src="audio/tone-1.mp3" id="tone1"></audio>
+        </div>
+        <div class="square" id="green">
+          <audio src="audio/tone-2.mp3" id="tone2"></audio>
+        </div>
+        <div class="square" id="blue">
+          <audio src="audio/tone-3.mp3" id="tone3"></audio>
+        </div>
+        <div class="square" id="yellow">
+          <audio src="audio/tone-4.mp3" id="tone4"></audio>
+        </div>
       </div>
       <div class="buttons-container">
         <button type="button" name="button" id="start">Start</button>
@@ -47,5 +54,6 @@
         </p>
       </div>
     </div>
+    <script src="script/app.js"></script>
   </body>
 </html>
