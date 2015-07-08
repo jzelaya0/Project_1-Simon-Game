@@ -3,7 +3,7 @@
 var computerSequence = [];
 var playerSequence = [];
 var round = 0;
-var simon;
+var simon = true;
 
 
 // WHEN START BUTTON IS CLICKED START THE GAME
@@ -30,23 +30,35 @@ $('#start').click(randomColor);
   }
 
 
-  $('.square').click(playerClick);
+  $('.square').click(animate);
 
   //PUSH PLAYERS SEQUENCE INTO AN ARRAY
   function playerClick() {
+    var name = this;
     playerSequence.push(this.id);
     console.log(playerSequence);
+
   }
 
-  //ANIMATE COLORED SQUARE
   function animate() {
-    var square = $(this);
-    square.animate({opacity: '0.2' }, "fast");
-    square.animate({opacity: '1' }, 'fast');
-    // width: '200px', height: '200px'
+    $(this).animate({opacity: '0.2' }, 'fast');
+    $(this).animate({opacity: '1' }, 'fast');
+    $('audio',this).trigger('play');
+    console.log(name);
   }
 
-  //PLAY SOUND WHEN SQUARE IS CLICKED
-  function playSound() {
-    $('audio',this).trigger('play');
+
+  function newRound() {
+    if (simon === true) {
+      //CONTINUE TO PLAY GAME
+    }
+  }
+
+
+  function checkMatch() {
+    if (computerSequence == playerSequence) {
+      //START A NEW ROUND
+    }else {
+      //RESTART THE GAME
+    }
   }
