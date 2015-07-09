@@ -7,7 +7,50 @@ var simon = true;
 
 
 // WHEN START BUTTON IS CLICKED START THE GAME
-$('#start').click(randomColor);
+$('#start').click(startGame);
+
+function startGame() {
+  //START THE FIRST ROUND
+  // console.log("Game will Begin");
+  randomColor();
+}
+
+
+
+function newRound() {
+
+  //Animate color patterh for computer sequence
+
+}
+
+
+//CHECKS FOR A MATCH BETWEEN COMPUTER AND PLAYER
+function checkForMatch() {
+  //Will check if computer and player pattern matches
+  //If there is a match... move to a new round.
+  //If not then the game will end.
+  if (computerSequence.join() == playerSequence.join()) {
+      alert('Good Move');
+  }else {
+      alert('Bad Move');
+  }
+
+}
+
+//COMPUTER GENERATES PATTERN
+function playPattern(computer) {
+  var i = 0;
+  var square = this;
+  var interval = setInterval(function(){
+    square.animate($('#' + computer[i]));
+
+    i++;
+    if (i >= computer.length) {
+      clearInterval(interval);
+    }
+  },700);
+}
+
 
 
 // GAME WILL GENERATE RANDOM Color
@@ -35,33 +78,15 @@ $('#start').click(randomColor);
 
 
   $('.square').click(playerClick);
-
   //PUSH PLAYERS SEQUENCE INTO AN ARRAY
   function playerClick() {
     playerSequence.push(this.id);
-    console.log(playerSequence);
     animate(this);
+    console.log(playerSequence);
   }
-
+  //ANIMATES BOTH COMPUTER AND PLAYER MOVES
   function animate(arg) {
-    $(arg).animate({opacity: '0.2' }, 'fast');
-    $(arg).animate({opacity: '1' }, 'fast');
+    $(arg).animate({opacity: '0.2' }, 100);
+    $(arg).animate({opacity: '1' }, 100);
     $('audio',arg).trigger('play');
   }
-
-
-
-  // function newRound() {
-  //   if (simon === true) {
-  //     //CONTINUE TO PLAY GAME
-  //   }
-  // }
-  //
-  //
-  // function checkMatch() {
-  //   if (computerSequence == playerSequence) {
-  //     //START A NEW ROUND
-  //   }else {
-  //     //RESTART THE GAME
-  //   }
-  // }
