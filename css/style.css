@@ -5,7 +5,9 @@ LAYOUT
 body {
   font-family: 'Lato', helvetica, serif;
   font-size: 1em;
-  background: url(../images/ricepaper_v3_@2X.png);
+  /*background: url(../images/ricepaper_v3_@2X.png);*/
+  background-color: rgb(68, 86, 94);
+  color: white;
 }
 
 
@@ -19,6 +21,11 @@ body {
   width: 420px;
   height: 420px;
   margin: 20px auto;
+  background-color: rgb(46, 57, 62);
+  border-radius: 30px;
+  border: 5px solid snow;
+  padding: 10px;
+  box-shadow: 0 0 20px rgb(161, 161, 161);
 }
 
 .buttons-container {
@@ -27,6 +34,7 @@ body {
 
 .rules {
   margin: 40px 0;
+  padding: 0 150px;
 }
 
 
@@ -39,15 +47,23 @@ BUTTONS
 #challenge_mode {
   border: none;
   border-radius: 10px;
+  border: 3px solid white;
   color: white;
-  background-color: rgb(174, 192, 214);
-  box-shadow: 0 1px 10px grey;
+  background-color: rgb(46, 57, 62);
+  box-shadow: 0 1px 10px rgb(102, 102, 102);
 }
 
 
 #challenge_mode {
   display: block;
   margin: 10px auto;
+}
+
+#level {
+  width: 50px;
+  height: 50px;
+  margin: 5px auto;
+  font-size: 2.5em;
 }
 
 
@@ -82,18 +98,21 @@ COLORED SQUARES
 }
 
 
+/*******************************
+MISC
+*******************************/
+h1 {
+  margin: 0;
+  font-size: 5em;
+}
+
 h2,
 p {
   text-align: left;
+  line-height: 35px;
 }
 
-#level {
-  width: 50px;
-  height: 50px;
-  margin: 20px auto;
-  border: 3px solid white;
-  font-size: 2.5em;
-}
+
 
 h3 {
   color: white;
