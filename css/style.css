@@ -33,7 +33,7 @@ body {
 /*******************************
 BUTTONS
 *******************************/
-
+#level,
 #start,
 #reset,
 #challenge_mode {
@@ -82,9 +82,18 @@ COLORED SQUARES
 }
 
 
-
-
 h2,
 p {
   text-align: left;
+}
+
+#level {
+  width: 200px;
+  height: 50px;
+  margin: 20px auto;
+  border: 3px solid white;
+}
+
+h3 {
+  color: white;
 }
