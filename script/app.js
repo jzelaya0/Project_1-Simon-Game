@@ -1,5 +1,4 @@
 
-
 var computerSequence = [];
 var playerSequence = [];
 var resetPlayerSequence;
@@ -11,18 +10,24 @@ var simon = true;
 // WHEN START BUTTON IS CLICKED START THE GAME
 $('#start').click(startGame);
 
+
+//INITIATES THE COMPUTER TO GENERATE A RANDOM COLOR FOR FIRST ROUND
 function startGame() {
   //START THE FIRST ROUND
   console.log("Game will Begin");
   randomColor();
   playPattern();
+  if (round === 0) {
+    update();
+  }
 }
 
 
-
+//PLAYS THE COMPUTER PATTERN
 function newRound() {
   //Animate color pattern for computer sequence
   playPattern();
+  update();
 }
 
 
@@ -34,6 +39,7 @@ function checkForMatch() {
     var clickCountCheck = computerSequence.length;
     console.log(clickCountCheck + '=' + currentClickCount);
     if(clickCountCheck == currentClickCount){
+
       if (computerSequence.join() == playerSequence.join()){
         newRound();
         randomColor();
@@ -44,8 +50,9 @@ function checkForMatch() {
       }else {
         currentClickCount = 0;
         alert('You Lose!');
+        resetGame();
       }
-  }
+    }
 }
 
 
@@ -61,7 +68,7 @@ function playPattern() {
     if (i >= computerSequence.length) {
       clearInterval(interval);
     }
-  },700);
+  },600);
 }
 
 
@@ -104,3 +111,33 @@ function playPattern() {
     $(arg).animate({opacity: '1' }, 100);
     $('audio',arg).trigger('play');
   }
+
+
+  //RESETS THE GAME
+  $('#reset').click(resetGame);
+  function resetGame() {
+    computerSequence = [];
+    playerSequence = [];
+    alert('Game has been reset!');
+    resetCounter();
+  }
+
+  function update() {
+  $('#level').html(function(){
+    return round += 1;
+    }
+  );
+  }
+
+  function resetCounter() {
+  $('#level').html(function(){
+    return round = 0;
+    }
+  );
+  }
+
+
+  //CHALLENGE MODE NEEDS WORK
+  $('#challenge_mode').click(function(){
+    alert('Coming Soon!');
+  });
