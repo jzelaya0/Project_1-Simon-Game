@@ -5,6 +5,7 @@ var resetPlayerSequence;
 var currentClickCount = 0;
 var round = 0;
 var simon = true;
+var rotateCheck = false;
 
 
 // WHEN START BUTTON IS CLICKED START THE GAME
@@ -26,6 +27,7 @@ function startGame() {
 //PLAYS THE COMPUTER PATTERN
 function newRound() {
   //Animate color pattern for computer sequence
+
   playPattern();
   update();
 }
@@ -46,7 +48,7 @@ function checkForMatch() {
         playerSequence = [];
         currentClickCount = 0;
         console.log('Computer: ' + computerSequence);
-         alert("Good!");
+        //  alert("Good!");
       }else {
         currentClickCount = 0;
         alert('You Lose!');
@@ -59,6 +61,9 @@ function checkForMatch() {
 
 //COMPUTER GENERATES PATTERN
 function playPattern() {
+  if (rotateCheck === true) {
+    rotateBoard();
+  }
   var i = 0;
   var square = this;
   var interval = setInterval(function(){
@@ -68,7 +73,7 @@ function playPattern() {
     if (i >= computerSequence.length) {
       clearInterval(interval);
     }
-  },600);
+  },700);
 }
 
 
@@ -120,8 +125,11 @@ function playPattern() {
     playerSequence = [];
     alert('Game has been reset!');
     resetCounter();
+    return rotateCheck = false;
   }
 
+
+  //UPDATES THE ROUND
   function update() {
   $('#level').html(function(){
     return round += 1;
@@ -129,6 +137,7 @@ function playPattern() {
   );
   }
 
+  //RESETS THE ROUND COUNTER
   function resetCounter() {
   $('#level').html(function(){
     return round = 0;
@@ -137,7 +146,39 @@ function playPattern() {
   }
 
 
-  //CHALLENGE MODE NEEDS WORK
+  //SETS UP CHALLENGE MODE
   $('#challenge_mode').click(function(){
-    alert('Coming Soon!');
+    $(this).css('background-color', 'rgb(254, 73, 83)');
+      alert("Challenge Mode is Set");
+     return rotateCheck = true;
   });
+
+
+//ROTATES THE BOARD
+function rotateBoard(){
+  var number = Math.floor(Math.random() * 8);
+  var degrees;
+  if (number <= 2) {
+    degrees = -90;
+  }else if (number <= 4) {
+    degrees = 90;
+  }else if (number <= 6) {
+    degrees = -180;
+  }else {
+    degrees = 180;
+  }
+
+  function rotation(degree) {
+      $('.board-container').animate({  borderSpacing: degree }, {
+        step: function(now) {
+          $(this).css('-webkit-transform','rotate('+now+'deg)');
+          $(this).css('-moz-transform','rotate('+now+'deg)');
+          $(this).css('transform','rotate('+now+'deg)');
+        },
+        duration:'fast'
+    },'linear');
+
+  }
+
+  return rotation(degrees);
+}
