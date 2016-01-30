@@ -1,0 +1,28 @@
+{
+  "name": "simon-says-game",
+  "version": "1.0.0",
+  "description": "Simon Says Memory Game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jzelaya0/Project_1-Simon-Game.git"
+  },
+  "keywords": [
+    "Simon",
+    "Says",
+    "Memory",
+    "Game"
+  ],
+  "author": "Jesse Zelaya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jzelaya0/Project_1-Simon-Game/issues"
+  },
+  "homepage": "https://github.com/jzelaya0/Project_1-Simon-Game#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  }
+}
