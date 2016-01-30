@@ -24,6 +24,9 @@
   "homepage": "https://github.com/jzelaya0/Project_1-Simon-Game#readme",
   "devDependencies": {
     "gulp": "^3.9.0",
-    "gulp-util": "^3.0.7"
+    "gulp-jshint": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "jshint": "^2.9.1",
+    "jshint-stylish": "^2.1.0"
   }
 }
