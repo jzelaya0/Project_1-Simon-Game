@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/jzelaya0/Project_1-Simon-Game#readme",
   "devDependencies": {
-    "gulp": "^3.9.0"
+    "gulp": "^3.9.0",
+    "gulp-util": "^3.0.7"
   }
 }
