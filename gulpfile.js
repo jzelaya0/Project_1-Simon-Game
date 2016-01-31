@@ -8,6 +8,7 @@ var sourcemaps      = require('gulp-sourcemaps');
 var concat          = require('gulp-concat');
 var uglify          = require('gulp-uglify');
 var gulpIf          = require('gulp-if');
+var useref          = require('gulp-useref');
 var browserSync     = require('browser-sync').create();
 
 
@@ -50,6 +51,8 @@ gulp.task('build-js',function(){
       stream: true
     }));
 });
+
+//Useref task config
 
 //Browser sync
 gulp.task('browserSync', function(){
