@@ -15,12 +15,13 @@ var browserSync     = require('browser-sync').create();
 // ===================
 input = {
   js: "source/javascript/app.js",
+  vendorJs: ["source/javascript/vendors/jquery-1.12.0.js"],
   styl: "source/stylus/main.styl"
 };
 
 output = {
-  js: "public/scripts",
-  css: "public/css"
+  js: "public/assets/scripts",
+  css: "public/css/main.js"
 };
 
 
@@ -53,7 +54,7 @@ gulp.task('build-css', function(){
 
 //Javascript task config
 gulp.task('build-js',function(){
-  return gulp.src(input.js)
+  return gulp.src([input.vendorJs[0], input.js])
     .pipe(sourcemaps.init())//process original sources
     .pipe(concat("bundle.js"))
     .pipe(gulpIf('*.js', uglify()))//minifies only if its a JS file

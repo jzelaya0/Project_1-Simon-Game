@@ -5,6 +5,8 @@ var currentClickCount = 0;
 var round = 0;
 var simon = true;
 var rotateCheck = false;
+var check = false;
+
 
 
 // WHEN START BUTTON IS CLICKED START THE GAME
