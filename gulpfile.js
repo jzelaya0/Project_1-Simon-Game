@@ -21,7 +21,7 @@ input = {
 
 output = {
   js: "public/assets/scripts",
-  css: "public/css/main.js"
+  css: "public/assets/css"
 };
 
 
