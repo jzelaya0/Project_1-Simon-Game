@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var jshint = require('gulp-jshint');
+var stylus = require('gulp-stylus');
 
 
 // DEFAULT TASK
@@ -10,7 +11,7 @@ var jshint = require('gulp-jshint');
 gulp.task("default", ['watch']);
 
 // TASKS
-// =========================
+// ==================================================
 
 //Jshint task config
 gulp.task('jshint', function(){
@@ -19,6 +20,17 @@ gulp.task('jshint', function(){
     .pipe(jshint.reporter("jshint-stylish"));
 });
 
+
+//Stylus task config
+gulp.task('build-css', function(){
+  return gulp.src("source/stylus/*styl")
+    .pipe(stylus())
+    .pipe(gulp.dest("public/assets/css"));
+});
+
+// WATCH FOR CHANGES
+// ==================================================
 gulp.task('watch', function(){
   gulp.watch("source/javascript/*.js", ["jshint"]);
-})
+  gulp.watch("source/stylus/*.styl", ["build-css"]);
+});
