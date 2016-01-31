@@ -8,8 +8,20 @@ var sourcemaps      = require('gulp-sourcemaps');
 var concat          = require('gulp-concat');
 var uglify          = require('gulp-uglify');
 var gulpIf          = require('gulp-if');
-var useref          = require('gulp-useref');
 var browserSync     = require('browser-sync').create();
+
+
+// PATHS
+// ===================
+input = {
+  js: "source/javascript/app.js",
+  styl: "source/stylus/main.styl"
+};
+
+output = {
+  js: "public/scripts",
+  css: "public/css"
+};
 
 
 // DEFAULT TASK
@@ -21,7 +33,7 @@ gulp.task("default", ['watch']);
 
 //Jshint task config
 gulp.task('jshint', function(){
-  return gulp.src("source/javascript/*.js")
+  return gulp.src(input.js)
     .pipe(jshint())
     .pipe(jshint.reporter("jshint-stylish"));
 });
@@ -29,11 +41,11 @@ gulp.task('jshint', function(){
 
 //Stylus task config
 gulp.task('build-css', function(){
-  return gulp.src("source/stylus/*styl")
+  return gulp.src(input.styl)
     .pipe(sourcemaps.init())//process original sources
     .pipe(stylus())
     .pipe(sourcemaps.write())//add map to modified source
-    .pipe(gulp.dest("public/assets/css")).on("error", gutil.log)
+    .pipe(gulp.dest(output.css)).on("error", gutil.log)
     .pipe(browserSync.reload({
       stream: true
     }));
@@ -41,18 +53,24 @@ gulp.task('build-css', function(){
 
 //Javascript task config
 gulp.task('build-js',function(){
-  return gulp.src("source/javascript/*js")
+  return gulp.src(input.js)
     .pipe(sourcemaps.init())//process original sources
     .pipe(concat("bundle.js"))
     .pipe(gulpIf('*.js', uglify()))//minifies only if its a JS file
     .pipe(sourcemaps.write())//add map to modified source
-    .pipe(gulp.dest("public/assets/scripts")).on("error", gutil.log)
+    .pipe(gulp.dest(output.js)).on("error", gutil.log)
     .pipe(browserSync.reload({
       stream: true
     }));
 });
 
-//Useref task config
+//HTML reload task config
+gulp.task('html-reload', function(){
+  return gulp.src("/source/index.html")
+    .pipe(browserSync.reload({
+      stream: true
+    }));
+});
 
 //Browser sync
 gulp.task('browserSync', function(){
@@ -67,6 +85,7 @@ gulp.task('browserSync', function(){
 // ==================================================
 gulp.task('watch', ['browserSync'], function(){
   gulp.watch("source/javascript/*.js", ["jshint"]);
+  gulp.watch("source/index.html", ["html-reload"]);
   gulp.watch("source/javascript/*.js", ["build-js"]);
   gulp.watch("source/stylus/*.styl", ["build-css"]);
 });

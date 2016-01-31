@@ -1,4 +1,3 @@
-
 var computerSequence = [];
 var playerSequence = [];
 var resetPlayerSequence;
