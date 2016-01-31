@@ -32,7 +32,7 @@ gulp.task('build-css', function(){
     .pipe(sourcemaps.init())//process original sources
     .pipe(stylus())
     .pipe(sourcemaps.write())//add map to modified source
-    .pipe(gulp.dest("public/assets/css"))
+    .pipe(gulp.dest("public/assets/css")).on("error", gutil.log)
     .pipe(browserSync.reload({
       stream: true
     }));
@@ -45,7 +45,7 @@ gulp.task('build-js',function(){
     .pipe(concat("bundle.js"))
     .pipe(gulpIf('*.js', uglify()))//minifies only if its a JS file
     .pipe(sourcemaps.write())//add map to modified source
-    .pipe(gulp.dest("public/assets/scripts"))
+    .pipe(gulp.dest("public/assets/scripts")).on("error", gutil.log)
     .pipe(browserSync.reload({
       stream: true
     }));
