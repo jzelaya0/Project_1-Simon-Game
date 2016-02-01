@@ -56,7 +56,7 @@ gulp.task('build-css', function(){
 gulp.task('build-js',function(){
   return gulp.src([input.vendorJs[0], input.js])
     .pipe(sourcemaps.init())//process original sources
-    .pipe(concat("bundle.js"))
+    .pipe(concat("bundle.min.js"))
     .pipe(gulpIf('*.js', uglify()))//minifies only if its a JS file
     .pipe(sourcemaps.write())//add map to modified source
     .pipe(gulp.dest(output.js)).on("error", gutil.log)
