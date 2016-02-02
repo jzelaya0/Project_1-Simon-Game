@@ -25,9 +25,11 @@ $square-shadow = 0 0 10px rgb(168, 168, 168)
 /*******************************
   LAYOUT
 *******************************/
+html
+  font-size 16px
+
 body
   font-family "Lato", helvetica, serif
-  font-size 16px
   color $light-gray
 
 .main-container
@@ -48,11 +50,6 @@ body
 h1
   margin 0
   font-size 5em
-
-h2
-p
-  text-align left
-  line-height 35px
 
 /*******************************
   SQUARES
@@ -79,11 +76,6 @@ p
 .buttons-container
   font-size 1rem
   margin 20px 0
-  #level
-    width 50px
-    height 50px
-    margin 5px auto
-    font-size 2.5em
   #challenge_mode
     display block
     margin 10px auto
@@ -94,8 +86,20 @@ p
     border-radius 5px
     border $gray-medium-border
     background none
+  #level
+    width 5%
+    margin 5px auto
+    font-size 2.5em
 
 
 .rules
   margin 40px 0
   padding 0 150px
+  h2
+  p
+    text-align left
+    line-height 1.75em
+  h2
+    font-size 2em
+  p
+    font-size 1em
