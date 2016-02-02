@@ -1,55 +1,60 @@
+// VARIABLES
+// ==================================================
 var computerSequence = [];
 var playerSequence = [];
-var resetPlayerSequence;
 var currentClickCount = 0;
-var round = 0;
-var simon = true;
+var gameRound = 0;
 var rotateCheck = false;
 
+$start         = $('#start');
+$squares       = $('.square');
+$level         = $('#level');
+$reset         = $('#reset');
+$challengeMode = $('#challenge_mode');
+
+// CLICK EVENTS
+// ==================================================
+$start.click(startGame);//Start the game
+$squares.click(playerClick);//Push this box's id into playerSequence
+$reset.click(resetGame);//Reset the game
 
 
 
-// WHEN START BUTTON IS CLICKED START THE GAME
-$('#start').click(startGame);
-
-
-//INITIATES THE COMPUTER TO GENERATE A RANDOM COLOR FOR FIRST ROUND
+// START THE GAME
+// =========================
 function startGame() {
-  //START THE FIRST ROUND
-  console.log("Game will Begin");
-  randomColor();
-  playPattern();
-  if (round === 0) {
-    update();
+  // Generate color and first pattern
+  generateRandomColor();
+  computerPattern();
+  if (gameRound === 0) {
+    updateRound();
   }
 }
 
-
-//PLAYS THE COMPUTER PATTERN
+// NEW ROUND
+// =========================
 function newRound() {
-  //Animate color pattern for computer sequence
-
-  playPattern();
-  update();
+  //Add to the pattern and update the round
+  computerPattern();
+  updateRound();
 }
 
-
-//CHECKS FOR A MATCH BETWEEN COMPUTER AND PLAYER
+// COMPARE THE PLAYER &
+// COMPUTER SEQUENCE
+// =========================
 function checkForMatch() {
-  //Will check if computer and player pattern matches
-  //If there is a match... move to a new round.
-  //If not then the game will end.
+    // Look for a match between computer and player sequence
     var clickCountCheck = computerSequence.length;
     console.log(clickCountCheck + '=' + currentClickCount);
+    // If the player click count matches the computers pattern length
     if(clickCountCheck == currentClickCount){
-
+      // And if the two arrays match then move to the next round
       if (computerSequence.join() == playerSequence.join()){
         newRound();
-        randomColor();
+        generateRandomColor();
         playerSequence = [];
         currentClickCount = 0;
         console.log('Computer: ' + computerSequence);
-        //  alert("Good!");
       }else {
         currentClickCount = 0;
         alert('You Lose!');
@@ -58,107 +63,110 @@ function checkForMatch() {
     }
 }
 
-
-
-//COMPUTER GENERATES PATTERN
-function playPattern() {
+// COMPUTER PATTERN INTERVAL
+// =========================
+function computerPattern() {
   if (rotateCheck === true) {
     rotateBoard();
   }
   var i = 0;
   var square = this;
   var interval = setInterval(function(){
-    square.animate($(computerSequence[i]));
+    square.animateSquare($(computerSequence[i]));
 
     i++;
     if (i >= computerSequence.length) {
       clearInterval(interval);
+
     }
   },700);
 }
 
+// GENERATE COMPUTER'S COLORS
+// =========================
+function generateRandomColor() {
+  var randomNumber = Math.floor(Math.random() * 9);
+    //IF NUMBER <= 2 IT WILL REFER TO RED SQUARE
+    if (randomNumber <= 2) {
+      computerSequence.push('#red');
+    // IF NUMBER <= 4 IT WILL REFER TO GREEN SQUARE
+    }else if (randomNumber <= 4) {
+      computerSequence.push('#green');
+    // IF NUMBER <= 6 IT WILL REFER TO BLUE SQUARE
+    }else if (randomNumber <= 6) {
+        computerSequence.push('#blue');
+    // IF NUMBER <= 8 IT WILL REFER TO YELLOW SQUARE
+    }else {
+        computerSequence.push('#yellow');
+    }
+}
 
-// GAME WILL GENERATE RANDOM COLOR
-  function randomColor() {
-    var randomNumber = Math.floor(Math.random() * 9);
-      //IF NUMBER <= 2 IT WILL REFER TO RED SQUARE
-      if (randomNumber <= 2) {
-        computerSequence.push('#red');
-        // animate($('#red'));
-      // IF NUMBER <= 4 IT WILL REFER TO GREEN SQUARE
-      }else if (randomNumber <= 4) {
-        computerSequence.push('#green');
-        // animate($('#green'));
-      // IF NUMBER <= 6 IT WILL REFER TO BLUE SQUARE
-      }else if (randomNumber <= 6) {
-          computerSequence.push('#blue');
-          // animate($('#blue'));
-      // IF NUMBER <= 8 IT WILL REFER TO YELLOW SQUARE
-      }else {
-          computerSequence.push('#yellow');
-          // animate($('#yellow'));
-      }
-  }
+// PUSH PLAYERS CLICK INTO ARRAY
+// =========================
+function playerClick() {
+  playerSequence.push("#" +this.id);
+  console.log("Player: " + playerSequence);
+  animateSquare(this);
+  currentClickCount+=1;
+  checkForMatch();
+}
 
+// ANIMATION FOR COMPUTER AND
+// PLAYER SQUARES
+// =========================
+function animateSquare(square) {
+  $(square).animate({opacity: '0.2' }, 100);
+  $(square).animate({opacity: '1' }, 100);
+  $('audio',square).trigger('play');
+}
 
-  $('.square').click(playerClick);
-  //PUSH PLAYERS SEQUENCE INTO AN ARRAY
-  function playerClick() {
-    playerSequence.push("#" +this.id);
-    console.log("Player: " + playerSequence);
-    animate(this);
-    currentClickCount+=1;
-    checkForMatch();
-  }
+// RESET THE GAME
+// =========================
+function resetGame() {
+  computerSequence = [];
+  playerSequence = [];
+  alert('Game has been reset!');
+  resetCounter();
+  rotateCheck = false;
+  return rotateCheck;
+}
 
-  //ANIMATES BOTH COMPUTER AND PLAYER MOVES
-  function animate(arg) {
-    $(arg).animate({opacity: '0.2' }, 100);
-    $(arg).animate({opacity: '1' }, 100);
-    $('audio',arg).trigger('play');
-  }
-
-
-  //RESETS THE GAME
-  $('#reset').click(resetGame);
-  function resetGame() {
-    computerSequence = [];
-    playerSequence = [];
-    alert('Game has been reset!');
-    resetCounter();
-    return rotateCheck = false;
-  }
-
-
-  //UPDATES THE ROUND
-  function update() {
+// UPDATE THE GAME ROUND
+// =========================
+function updateRound() {
   $('#level').html(function(){
-    return round += 1;
+    return gameRound += 1;
     }
   );
-  }
+}
 
-  //RESETS THE ROUND COUNTER
-  function resetCounter() {
-  $('#level').html(function(){
-    return round = 0;
+// RESET THE GAME ROUND COUTER
+// =========================
+function resetCounter() {
+  $level.html(function(){
+      gameRound = 0;
+    return gameRound;
     }
   );
-  }
+}
 
 
-  //SETS UP CHALLENGE MODE
-  $('#challenge_mode').click(function(){
-    $(this).css('background-color', 'rgb(254, 73, 83)');
-      alert("Challenge Mode is Set");
-     return rotateCheck = true;
-  });
 
+// CHALLENGE MODE
+// ==================================================
+$challengeMode.click(function(){
+  $(this).css('background-color', 'rgb(254, 73, 83)');
+    alert("Challenge Mode is Set");
+    rotateCheck = true;
+   return rotateCheck;
+});
 
-//ROTATES THE BOARD
+// BOARD ROTATION
+// =========================
 function rotateBoard(){
   var number = Math.floor(Math.random() * 8);
   var degrees;
+
   if (number <= 2) {
     degrees = -90;
   }else if (number <= 4) {
