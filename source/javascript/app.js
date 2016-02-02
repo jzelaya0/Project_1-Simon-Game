@@ -2,8 +2,8 @@
 // ==================================================
 var computerSequence = [];
 var playerSequence = [];
-var currentClickCount = 0;
 var gameRound = 0;
+var compIndex = 0;
 var rotateCheck = false;
 
 $start         = $('#start');
@@ -42,24 +42,22 @@ function newRound() {
 // COMPARE THE PLAYER &
 // COMPUTER SEQUENCE
 // =========================
-function checkForMatch() {
-    // Look for a match between computer and player sequence
-    var clickCountCheck = computerSequence.length;
-    console.log(clickCountCheck + '=' + currentClickCount);
-    // If the player click count matches the computers pattern length
-    if(clickCountCheck == currentClickCount){
-      // And if the two arrays match then move to the next round
-      if (computerSequence.join() == playerSequence.join()){
-        newRound();
-        generateRandomColor();
-        playerSequence = [];
-        currentClickCount = 0;
-        console.log('Computer: ' + computerSequence);
-      }else {
-        currentClickCount = 0;
+function checkForMatch(squareId) {
+    // If the player click count matches the computer's current color
+    console.log(compIndex);
+    if(squareId === computerSequence[compIndex]){
+        // And if the two arrays match then move to the next round
+        compIndex++;
+        if(compIndex === computerSequence.length){
+          newRound();
+          generateRandomColor();
+          playerSequence = [];
+          console.log('COMPUTER: ' + computerSequence);
+        }
+    }
+    else {
         alert('You Lose!');
         resetGame();
-      }
     }
 }
 
@@ -77,7 +75,7 @@ function computerPattern() {
     i++;
     if (i >= computerSequence.length) {
       clearInterval(interval);
-
+      compIndex = 0;
     }
   },700);
 }
@@ -105,10 +103,9 @@ function generateRandomColor() {
 // =========================
 function playerClick() {
   playerSequence.push("#" +this.id);
-  console.log("Player: " + playerSequence);
+  console.log("PLAYER: " + playerSequence);
   animateSquare(this);
-  currentClickCount+=1;
-  checkForMatch();
+  checkForMatch("#" + this.id);
 }
 
 // ANIMATION FOR COMPUTER AND
