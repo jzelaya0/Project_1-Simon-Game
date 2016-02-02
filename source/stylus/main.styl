@@ -2,8 +2,8 @@
 // =========================
 
 //Colors
-$backgroud = rgb(46, 57, 62)
 $gray-color = rgb(46, 57, 62)
+$light-gray = #B8B8B8
 $green = rgb(109,215,105)
 $blue = rgb(115,205,204)
 $red = rgb(254,73,83)
@@ -13,6 +13,7 @@ $white = #fff
 //Borders
 $white-border = 5px solid snow
 $white-medium-border = 3px solid #fff
+$gray-medium-border = 3px solid $light-gray
 
 //Shadows
 $box-shadow-dark = 0 0 20px rgb(161, 161, 161)
@@ -27,8 +28,7 @@ $square-shadow = 0 0 10px rgb(168, 168, 168)
 body
   font-family "Lato", helvetica, serif
   font-size 16px
-  background-color rgb(68, 86, 94)
-  color #fff
+  color $light-gray
 
 .main-container
   width 960px
@@ -39,11 +39,7 @@ body
   width 420px
   height 420px
   margin 20px auto
-  background-color $backgroud
-  border-radius 30px
-  border $white-border
-  padding 10px
-  box-shadow $box-shadow-dark
+  padding 2.5%
 
 
 /*******************************
@@ -58,37 +54,6 @@ p
   text-align left
   line-height 35px
 
-
-/*******************************
-  BUTTONS CONTAINER
-*******************************/
-.buttons-container
-  margin 20px 0
-  #level
-    width 50px
-    height 50px
-    margin 5px auto
-    font-size 2.5em
-  #challenge_mode
-    display block
-    margin 10px auto
-  #level
-  #start
-  #reset
-  #challenge_mode
-    border none
-    border-radius 10px
-    border 3px solid white
-    border $white-medium-border
-    color #fff
-    background-color $gray-color
-    box-shadow $box-shadow-medium
-
-
-.rules
-  margin 40px 0
-  padding 0 150px
-
 /*******************************
   SQUARES
 *******************************/
@@ -97,9 +62,6 @@ p
   width 190px
   height 190px
   display inline-block
-  border-radius 40px
-  border $white-medium-border
-  box-shadow $square-shadow
 
 #green
   background-color $green
@@ -109,3 +71,31 @@ p
   background-color $red
 #yellow
   background-color $yellow
+
+
+/*******************************
+  BUTTONS CONTAINER
+*******************************/
+.buttons-container
+  font-size 1rem
+  margin 20px 0
+  #level
+    width 50px
+    height 50px
+    margin 5px auto
+    font-size 2.5em
+  #challenge_mode
+    display block
+    margin 10px auto
+  button
+  #level
+    color $light-gray
+    font-size 1em
+    border-radius 5px
+    border $gray-medium-border
+    background none
+
+
+.rules
+  margin 40px 0
+  padding 0 150px
