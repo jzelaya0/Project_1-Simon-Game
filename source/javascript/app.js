@@ -1,3 +1,21 @@
+// ##############################
+// FIXES
+// 1. If player clicks board before starting game, game alerts a loss
+// 2. Disalbe start button once the game starts
+// 3. Disable the board while pattern is playing - or alert player sequence is still generating
+// 4. Change the square animation
+// 5. Challenge mode css needs to be removed when not active
+// 6. Disable reset button if game hasn't started
+// ##############################
+
+// ##############################
+// FEATURES TO ADD
+// ##############################
+// 1. Remove alerts and replace with modals
+// 2. Add dropdown to game rules and challenge mode instructions
+// 3. Countdown to start the game
+// 4. Timelimit for player to respond
+
 // VARIABLES
 // ==================================================
 var computerSequence = [];
