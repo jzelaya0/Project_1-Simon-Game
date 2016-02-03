@@ -45,9 +45,8 @@ gulp.task('jshint', function(){
 gulp.task('build-css', function(){
   return gulp.src(input.styl)
     .pipe(sourcemaps.init())//process original sources
-    .pipe(stylus())
+    .pipe(stylus({compress: true}))
     .pipe(sourcemaps.write())//add map to modified source
-    .pipe(gulpIf('*.css',cssNano()))
     .pipe(gulp.dest(output.css)).on("error", gutil.log)
     .pipe(browserSync.reload({
       stream: true
