@@ -8,6 +8,7 @@ var sourcemaps      = require('gulp-sourcemaps');
 var concat          = require('gulp-concat');
 var uglify          = require('gulp-uglify');
 var gulpIf          = require('gulp-if');
+var rename          = require('gulp-rename');
 var browserSync     = require('browser-sync').create();
 
 
@@ -46,6 +47,7 @@ gulp.task('build-css', function(){
     .pipe(sourcemaps.init())//process original sources
     .pipe(stylus({compress: true}))
     .pipe(sourcemaps.write())//add map to modified source
+    .pipe(rename('main.min.css'))
     .pipe(gulp.dest(output.css)).on("error", gutil.log)
     .pipe(browserSync.reload({
       stream: true
