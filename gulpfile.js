@@ -8,7 +8,6 @@ var sourcemaps      = require('gulp-sourcemaps');
 var concat          = require('gulp-concat');
 var uglify          = require('gulp-uglify');
 var gulpIf          = require('gulp-if');
-var cssNano         = require('gulp-cssnano');
 var browserSync     = require('browser-sync').create();
 
 
