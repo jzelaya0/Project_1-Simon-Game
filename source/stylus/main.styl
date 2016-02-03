@@ -8,7 +8,11 @@ $green = rgb(109,215,105)
 $blue = rgb(115,205,204)
 $red = rgb(254,73,83)
 $yellow = rgb(253,251,94)
+$orange = #FF9800
 $white = #fff
+$dark-green = #0C6F10
+$dark-red = #87133B
+$dark-blue = #3F51B5
 
 //Borders
 $white-border = 5px solid snow
@@ -39,7 +43,6 @@ body
 
 .board-container
   width 420px
-  height 420px
   margin 20px auto
   padding 2.5%
 
@@ -56,18 +59,31 @@ h1
 *******************************/
 .square
   margin 5.5px
-  width 190px
-  height 190px
+  width 175px
+  height 175px
   display inline-block
+  transition box-shadow .25s ease-in-out
 
 #green
   background-color $green
+  border 5px solid $dark-green
+  &:hover
+    box-shadow inset 0px 0px 40px $dark-green
 #blue
   background-color $blue
+  border 5px solid $dark-blue
+  &:hover
+    box-shadow inset 0px 0px 40px $dark-blue
 #red
   background-color $red
+  border 5px solid $dark-red
+  &:hover
+    box-shadow inset 0px 0px 40px $dark-red
 #yellow
   background-color $yellow
+  border 5px solid $orange
+  &:hover
+    box-shadow inset 0px 0px 40px $orange
 
 
 /*******************************
@@ -86,12 +102,20 @@ h1
     border-radius 5px
     border $gray-medium-border
     background none
+    padding 1%
+  button
+    transition background .25s ease-in-out
+  button:active
+    box-shadow inset 0px 1px 5px black
   #level
     width 5%
     margin 5px auto
     font-size 2.5em
 
 
+/*******************************
+  TEXT CONTAINER
+*******************************/
 .rules
   margin 40px 0
   padding 0 150px
@@ -103,3 +127,19 @@ h1
     font-size 2em
   p
     font-size 1em
+
+
+/*******************************
+ BUTTON TRANSITIONS
+*******************************/
+#start:hover
+  background $green
+  color #fff
+
+#reset:hover
+  background $red
+  color #fff
+
+#challenge_mode:hover
+  background $blue
+  color #fff
