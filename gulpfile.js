@@ -15,7 +15,7 @@ var browserSync     = require('browser-sync').create();
 // PATHS
 // ===================
 input = {
-  js: "source/javascript/app.js",
+  js: ["source/javascript/app.js", "source/javascript/modal.js" ],
   vendorJs: ["source/javascript/vendors/jquery-1.12.0.js"],
   styl: "source/stylus/main.styl"
 };
@@ -56,7 +56,7 @@ gulp.task('build-css', function(){
 
 //Javascript task config
 gulp.task('build-js',function(){
-  return gulp.src([input.vendorJs[0], input.js])
+  return gulp.src([input.vendorJs[0], input.js[0], input.js[1]])
     .pipe(sourcemaps.init())//process original sources
     .pipe(concat("bundle.min.js"))
     .pipe(gulpIf('*.js', uglify()))//minifies only if its a JS file
