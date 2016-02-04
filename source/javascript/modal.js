@@ -9,7 +9,31 @@
 
 // MODAL ELEMENTS
 // ==================================================
+var $body = $('body');
 var $overlay = $('<div id="overlay"></div>');
 var $modal = $('<div id="modal"></div>');
 var $modalContent =  $('<div id="modal-content"></div>');
-var $modalClose = $('<div id="modal-close"></div>');
+var $modalClose = $('<div id="modal-close">X</div>');
+
+// Append modal content and close button to modal
+$modal.append($modalContent);
+$modalContent.append($modalClose);
+
+//Close the modal on click (button or overlay)
+$modalClose.click(closeModal);
+$overlay.click(closeModal);
+
+// OPEN MODALS
+// =========================
+function openModal(){
+  $body.append($overlay,$modal);
+  $overlay.show();
+  $modal.show();
+}
+
+// OPEN MODALS
+// =========================
+function closeModal(){
+  $overlay.hide();
+  $modal.hide();
+}
