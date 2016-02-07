@@ -9,7 +9,7 @@
 
 // GAME MESSAGES
 // ==================================================
-messasges = {
+messages = {
   fail: [
     "Game Over!",
     "Sorry, you loose...",
@@ -41,7 +41,7 @@ var $overlay = $('<div id="overlay"></div>');
 var $modal = $('<div id="modal"></div>');
 var $modalContent =  $('<div id="modal-content"><p></p></div>');
 var $modalClose = $('<div id="modal-close">X</div>');
-var $modalText = $modalContent.children('p')[0];
+var $modalText = $modalContent.children('p');
 
 // Append modal content and close button to modal
 $modal.append($modalContent);
@@ -54,6 +54,7 @@ $overlay.click(closeModal);
 // OPEN MODALS
 // =========================
 function openModal(){
+  $modalText.html(messages.fail[2])
   console.log($modalText);
   $body.append($overlay,$modal);
   $overlay.show();
