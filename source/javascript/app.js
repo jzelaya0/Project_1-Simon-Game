@@ -74,7 +74,7 @@ function checkForMatch(squareId) {
         }
     }
     else {
-        alert('You Lose!');
+        openModal(messages.fail[getRandomNum(messages.fail)]);
         resetGame();
     }
 }
@@ -140,7 +140,7 @@ function animateSquare(square) {
 function resetGame() {
   computerSequence = [];
   playerSequence = [];
-  alert('Game has been reset!');
+  console.log('Game has been reset!');
   resetCounter();
   rotateCheck = false;
   return rotateCheck;
