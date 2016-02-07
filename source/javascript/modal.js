@@ -39,8 +39,9 @@ messasges = {
 var $body = $('body');
 var $overlay = $('<div id="overlay"></div>');
 var $modal = $('<div id="modal"></div>');
-var $modalContent =  $('<div id="modal-content"></div>');
+var $modalContent =  $('<div id="modal-content"><p></p></div>');
 var $modalClose = $('<div id="modal-close">X</div>');
+var $modalText = $modalContent.children('p')[0];
 
 // Append modal content and close button to modal
 $modal.append($modalContent);
@@ -53,6 +54,7 @@ $overlay.click(closeModal);
 // OPEN MODALS
 // =========================
 function openModal(){
+  console.log($modalText);
   $body.append($overlay,$modal);
   $overlay.show();
   $modal.show();
