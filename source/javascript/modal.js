@@ -53,9 +53,8 @@ $overlay.click(closeModal);
 
 // OPEN MODALS
 // =========================
-function openModal(){
-  $modalText.html(messages.fail[2])
-  console.log($modalText);
+function openModal(message){
+  $modalText.html(message);
   $body.append($overlay,$modal);
   $overlay.show();
   $modal.show();
@@ -66,4 +65,12 @@ function openModal(){
 function closeModal(){
   $overlay.hide();
   $modal.hide();
+}
+
+
+// RANDOM NUMBER (FOR MESSAGES)
+// =========================
+function getRandomNum(array) {
+  number = Math.floor(Math.random() * (array.length - 0) + 0);
+  return number;
 }
