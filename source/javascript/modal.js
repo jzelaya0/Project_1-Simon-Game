@@ -24,6 +24,13 @@ messasges = {
     "It's not your turn yet...",
     "WAIT!!!",
     "Really? You can't wait?..."
+  ],
+  game_mode: [
+    "Ready for a challenge, eh?",
+    "You're a brave one.",
+    "Challenge accepted!",
+    "Here goes nothing...",
+    "Good luck! You're gonna need it..."
   ]
 };
 
