@@ -7,6 +7,26 @@
 // 3. Create a function to close the modal on click
 // 4. Append messages to the modal content
 
+// GAME MESSAGES
+// ==================================================
+messasges = {
+  fail: [
+    "Game Over!",
+    "Sorry, you loose...",
+    "Get yo' memory checked!",
+    "Nah, not today.",
+    "A winner, you are not."
+  ],
+  game_status: [
+    "Hey, game is still going!",
+    "Generating pattern...",
+    "It's the computer's! turn!",
+    "It's not your turn yet...",
+    "WAIT!!!",
+    "Really? You can't wait?..."
+  ]
+};
+
 // MODAL ELEMENTS
 // ==================================================
 var $body = $('body');
