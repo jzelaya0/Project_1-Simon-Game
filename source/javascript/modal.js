@@ -48,14 +48,14 @@ function openModal(message){
   $modalText.html(message);
   $body.append($overlay,$modal);
   $overlay.show();
-  $modal.show();
+  $modal.hide().fadeIn('fast');
 }
 
 // OPEN MODALS
 // =========================
 function closeModal(){
-  $overlay.hide();
-  $modal.hide();
+  $overlay.fadeOut('fast');
+  $modal.fadeOut('fast');
 }
 
 
