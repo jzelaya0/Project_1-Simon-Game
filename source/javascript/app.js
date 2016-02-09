@@ -141,7 +141,7 @@ function resetGame() {
   computerSequence = [];
   playerSequence = [];
   resetCounter();
-  $challengeMode.css("background-color", "");//Remove background color
+  $challengeMode.css({"background-color": "", "color": ""});//Remove background color
   rotateCheck = false;
 }
 
@@ -173,7 +173,7 @@ $challengeMode.click(setChallengeMode);
 function setChallengeMode() {
   if(rotateCheck === false){
     console.log($(this));
-    $(this).css('background-color', 'rgb(254, 73, 83)');
+    $(this).css({'background-color': 'rgb(254, 73, 83)', "color": "#fff"});
     openModal(messages.game_mode[getRandomNum(messages.game_mode)]);
     rotateCheck = true;
     console.log(rotateCheck);
