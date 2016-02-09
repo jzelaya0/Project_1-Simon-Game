@@ -23,6 +23,7 @@ var playerSequence = [];
 var gameRound = 0;
 var compIndex = 0;
 var rotateCheck = false;
+var computerInterval = null;
 
 $start         = $('#start');
 $squares       = $('.square');
@@ -62,7 +63,6 @@ function newRound() {
 // =========================
 function checkForMatch(squareId) {
     // If the player click count matches the computer's current color
-    console.log(compIndex);
     if(squareId === computerSequence[compIndex]){
         // And if the two arrays match then move to the next round
         compIndex++;
@@ -70,7 +70,6 @@ function checkForMatch(squareId) {
           newRound();
           generateRandomColor();
           playerSequence = [];
-          console.log('COMPUTER: ' + computerSequence);
         }
     }
     else {
@@ -89,11 +88,15 @@ function computerPattern() {
   var square = this;
   var interval = setInterval(function(){
     square.animateSquare($(computerSequence[i]));
-
+    computerInterval = true;
+    console.log("COMPUTER", computerInterval);
     i++;
     if (i >= computerSequence.length) {
       clearInterval(interval);
+      computerInterval = false;
+      console.log("DONE", computerInterval);
       compIndex = 0;
+      return computerInterval;
     }
   },700);
 }
@@ -120,10 +123,17 @@ function generateRandomColor() {
 // PUSH PLAYERS CLICK INTO ARRAY
 // =========================
 function playerClick() {
-  playerSequence.push("#" +this.id);
-  console.log("PLAYER: " + playerSequence);
-  animateSquare(this);
-  checkForMatch("#" + this.id);
+  if (computerInterval === true) {
+    console.log("IF",computerInterval);
+    openModal(messages.game_status[getRandomNum(messages.game_status)]);
+  }else if (computerInterval === false){
+    console.log("ELSE",computerInterval);
+    playerSequence.push("#" +this.id);
+    animateSquare(this);
+    checkForMatch("#" + this.id);
+  }else if (computerInterval === null) {
+    animateSquare(this);
+  }
 }
 
 // ANIMATION FOR COMPUTER AND
@@ -143,6 +153,7 @@ function resetGame() {
   resetCounter();
   $challengeMode.css({"background-color": "", "color": ""});//Remove background color
   rotateCheck = false;
+  computerInterval = null;
 }
 
 // UPDATE THE GAME ROUND
@@ -172,11 +183,9 @@ $challengeMode.click(setChallengeMode);
 
 function setChallengeMode() {
   if(rotateCheck === false){
-    console.log($(this));
     $(this).css({'background-color': 'rgb(254, 73, 83)', "color": "#fff"});
     openModal(messages.game_mode[getRandomNum(messages.game_mode)]);
     rotateCheck = true;
-    console.log(rotateCheck);
     return rotateCheck;
   }
 }
