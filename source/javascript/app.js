@@ -140,10 +140,9 @@ function animateSquare(square) {
 function resetGame() {
   computerSequence = [];
   playerSequence = [];
-  console.log('Game has been reset!');
   resetCounter();
+  $challengeMode.css("background-color", "");//Remove background color
   rotateCheck = false;
-  return rotateCheck;
 }
 
 // UPDATE THE GAME ROUND
@@ -169,12 +168,18 @@ function resetCounter() {
 
 // CHALLENGE MODE
 // ==================================================
-$challengeMode.click(function(){
-  $(this).css('background-color', 'rgb(254, 73, 83)');
-    alert("Challenge Mode is Set");
+$challengeMode.click(setChallengeMode);
+
+function setChallengeMode() {
+  if(rotateCheck === false){
+    console.log($(this));
+    $(this).css('background-color', 'rgb(254, 73, 83)');
+    openModal(messages.game_mode[getRandomNum(messages.game_mode)]);
     rotateCheck = true;
-   return rotateCheck;
-});
+    console.log(rotateCheck);
+    return rotateCheck;
+  }
+}
 
 // BOARD ROTATION
 // =========================

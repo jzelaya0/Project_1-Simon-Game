@@ -1,12 +1,3 @@
-// ##############################
-// TO DO
-// ##############################
-// 1. Create variables with html content to append to the body
-// 2. Create a function to open the modals
-  // 2a. Must be reusable for Game Over alert and Challenge Mode alert
-// 3. Create a function to close the modal on click
-// 4. Append messages to the modal content
-
 // GAME MESSAGES
 // ==================================================
 messages = {
