@@ -9,6 +9,7 @@ var concat          = require('gulp-concat');
 var uglify          = require('gulp-uglify');
 var gulpIf          = require('gulp-if');
 var rename          = require('gulp-rename');
+var autoprefixer    = require('gulp-autoprefixer');
 var browserSync     = require('browser-sync').create();
 
 
@@ -46,6 +47,10 @@ gulp.task('build-css', function(){
   return gulp.src(input.styl)
     .pipe(sourcemaps.init())//process original sources
     .pipe(stylus({compress: true}))
+    .pipe(autoprefixer({
+      browsers: ["last 2 versions"],
+      cascade: false
+    }))
     .pipe(sourcemaps.write())//add map to modified source
     .pipe(rename('main.min.css'))
     .pipe(gulp.dest(output.css)).on("error", gutil.log)
