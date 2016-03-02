@@ -10,6 +10,7 @@ var uglify          = require('gulp-uglify');
 var gulpIf          = require('gulp-if');
 var rename          = require('gulp-rename');
 var autoprefixer    = require('gulp-autoprefixer');
+var cssNano         = require('gulp-cssnano');
 var browserSync     = require('browser-sync').create();
 
 
@@ -17,8 +18,9 @@ var browserSync     = require('browser-sync').create();
 // ===================
 input = {
   js: ["source/javascript/app.js", "source/javascript/modal.js" ],
-  vendorJs: ["source/javascript/vendors/jquery-1.12.0.js"],
-  styl: "source/stylus/main.styl"
+  vendorJs: ["source/javascript/vendors/jquery-1.12.0.js","source/javascript/vendors/jquery-ui.js"],
+  styl: "source/stylus/main.styl",
+  vendorCss: "source/stylus/vendors/*.css"
 };
 
 output = {
@@ -29,7 +31,7 @@ output = {
 
 // DEFAULT TASK
 // =========================
-gulp.task("default", ['watch']);
+gulp.task("default", ['watch','build-vendor-css']);
 
 // TASKS
 // ==================================================
@@ -59,9 +61,17 @@ gulp.task('build-css', function(){
     }));
 });
 
+// Vendor CSS Config
+gulp.task('build-vendor-css', function(){
+  return gulp.src(input.vendorCss)
+    .pipe(cssNano())
+    .pipe(rename('vendor.min.css'))
+    .pipe(gulp.dest(output.css).on("error", gutil.log));
+});
+
 //Javascript task config
 gulp.task('build-js',function(){
-  return gulp.src([input.vendorJs[0], input.js[0], input.js[1]])
+  return gulp.src([input.vendorJs[0],input.vendorJs[1], input.js[0], input.js[1]])
     .pipe(sourcemaps.init())//process original sources
     .pipe(concat("bundle.min.js"))
     .pipe(gulpIf('*.js', uglify()))//minifies only if its a JS file
