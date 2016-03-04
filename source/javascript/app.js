@@ -1,14 +1,6 @@
 // ##############################
-// FIXES
-// 2. Disalbe start button once the game starts
-// 4. Change the square animation
-// 6. Disable reset button if game hasn't started
-// ##############################
-
-// ##############################
 // FEATURES TO ADD
 // ##############################
-// 1. Remove alerts and replace with modals
 // 2. Add dropdown to game rules and challenge mode instructions
 // 3. Countdown to start the game
 // 4. Timelimit for player to respond
@@ -22,6 +14,7 @@ var gameRound = 0;
 var compIndex = 0;
 var rotateCheck = false;
 var computerInterval = null;
+var gameStarted = false;
 
 $start         = $('#start');
 $squares       = $('.square');
@@ -41,10 +34,13 @@ $reset.click(resetGame);//Reset the game
 // =========================
 function startGame() {
   // Generate color and first pattern
-  generateRandomColor();
-  computerPattern();
-  if (gameRound === 0) {
-    updateRound();
+  if (gameStarted === false) {
+    gameStarted = true;
+    generateRandomColor();
+    computerPattern();
+    if (gameRound === 0) {
+      updateRound();
+    }
   }
 }
 
@@ -151,6 +147,7 @@ function resetGame() {
   resetCounter();
   $challengeMode.css({"background-color": "", "color": ""});//Remove background color
   rotateCheck = false;
+  gameStarted = false;
   computerInterval = null;
 }
 
