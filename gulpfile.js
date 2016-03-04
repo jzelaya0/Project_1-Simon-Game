@@ -18,7 +18,7 @@ var browserSync     = require('browser-sync').create();
 // ===================
 input = {
   js: ["source/javascript/app.js", "source/javascript/modal.js" ],
-  vendorJs: ["source/javascript/vendors/jquery-1.12.0.js","source/javascript/vendors/jquery-ui.js"],
+  vendorJs: ["source/javascript/vendors/jquery-1.12.0.js","source/javascript/vendors/jquery-ui.js", "source/javascript/vendors/jquery.transform2d.js"],
   styl: "source/stylus/main.styl",
   vendorCss: "source/stylus/vendors/*.css"
 };
@@ -71,7 +71,7 @@ gulp.task('build-vendor-css', function(){
 
 //Javascript task config
 gulp.task('build-js',function(){
-  return gulp.src([input.vendorJs[0],input.vendorJs[1], input.js[0], input.js[1]])
+  return gulp.src([input.vendorJs[0],input.vendorJs[1], input.vendorJs[2], input.js[0], input.js[1]])
     .pipe(sourcemaps.init())//process original sources
     .pipe(concat("bundle.min.js"))
     .pipe(gulpIf('*.js', uglify()))//minifies only if its a JS file
