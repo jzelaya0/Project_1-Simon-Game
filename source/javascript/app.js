@@ -1,10 +1,7 @@
 // ##############################
 // FIXES
-// 1. If player clicks board before starting game, game alerts a loss
 // 2. Disalbe start button once the game starts
-// 3. Disable the board while pattern is playing - or alert player sequence is still generating
 // 4. Change the square animation
-// 5. Challenge mode css needs to be removed when not active
 // 6. Disable reset button if game hasn't started
 // ##############################
 
@@ -15,6 +12,7 @@
 // 2. Add dropdown to game rules and challenge mode instructions
 // 3. Countdown to start the game
 // 4. Timelimit for player to respond
+
 
 // VARIABLES
 // ==================================================
@@ -140,8 +138,8 @@ function playerClick() {
 // PLAYER SQUARES
 // =========================
 function animateSquare(square) {
-  $(square).animate({opacity: '0.2' }, 100);
-  $(square).animate({opacity: '1' }, 100);
+  $(square).animate({transform: 'scale(1.1)', opacity: '.5'}, 100);
+  $(square).animate({transform: 'scale(1)', opacity: '1'}, 100);
   $('audio',square).trigger('play');
 }
 
